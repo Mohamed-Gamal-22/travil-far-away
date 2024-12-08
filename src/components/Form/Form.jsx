@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
-export default function Form() {
+export default function Form({ handleAdd }) {
   // to make controlled element like input => 3 steps => state, value, onChange
   const [desc, setdesc] = useState("");
   const [quantity, setquantity] = useState(1);
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!desc) return;
+    if (!desc) {
+      alert("no description yet to add !");
+    } else {
+      const Item = { desc, quantity, packed: false, id: Date.now() };
+      console.log(Item);
+      handleAdd(Item);
 
-    const Item = { desc, quantity, packed: false, id: Date.now() };
-    console.log(Item);
-
-    setdesc("")
-    setquantity(1)
+      setdesc("");
+      setquantity(1);
+    }
   }
 
   return (
@@ -43,7 +46,7 @@ export default function Form() {
           value={desc}
           onChange={(e) => setdesc(e.target.value)}
         />
-        <button className="bg-[#E3DAFF] rounded-md text-[#4C191B] px-8 py-1">
+        <button className="bg-[#E3DAFF] rounded-md transition-all duration-300 hover:bg-[#4C191B] hover:text-[#E3DAFF] text-[#4C191B] px-8 py-1">
           Add
         </button>
       </form>
