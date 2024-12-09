@@ -16,7 +16,9 @@ export default function List({ item, deleteItem, handleChecked }) {
         />
         <div
           className={` p-2 ${
-            item.packed ? "bg-gray-700 text-slate-300" : "bg-rose-300 text-gray-700"
+            item.packed
+              ? "bg-gray-700 text-slate-300"
+              : "bg-rose-300 text-gray-700"
           } rounded-md  items-center`}
         >
           {item.quantity} {item.desc}

@@ -18,7 +18,7 @@ export default function Stats({ items }) {
         ? "You Ready To Travil ✈️ have a nice trip"
         : `You have ${numberOfItems} items on your list, and your already packed
       ${packedNumber} item (
-      ${Math.round((packedNumber / numberOfItems) * 100) || 0})%`}
+      ${Math.round((packedNumber / numberOfItems) * 100)} %)`}
     </footer>
   );
 }

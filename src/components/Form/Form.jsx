@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 
-export default function Form({ handleAdd }) {
+export default function Form({ handleAdd, setSortBy, sortBy }) {
   // to make controlled element like input => 3 steps => state, value, onChange
   const [desc, setdesc] = useState("");
   const [quantity, setquantity] = useState(1);
-
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -51,6 +49,17 @@ export default function Form({ handleAdd }) {
         <button className="bg-[#E3DAFF] rounded-md transition-all duration-300 hover:bg-[#4C191B] hover:text-[#E3DAFF] text-[#4C191B] px-8 py-1">
           Add
         </button>
+        <div className="flex justify-center gap-2">
+          <select
+            onChange={(e) => setSortBy(e.target.value)}
+            value={sortBy}
+            className="bg-slate-800 text-slate-200 p-2 rounded-md"
+          >
+            <option value="all">Show All Items</option>
+            <option value="packed">Show Packed Items</option>
+            <option value="non">Show Non-Packed items</option>
+          </select>
+        </div>
       </form>
     </>
   );

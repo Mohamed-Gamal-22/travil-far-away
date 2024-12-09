@@ -5,6 +5,12 @@ import PackingList from "./components/PackingList/PackingList";
 import Stats from "./components/Stats/Stats";
 export default function App() {
   const [items, setItems] = useState([]);
+  const [sortBy, setSortBy] = useState("all");
+  let sortedItems;
+
+  if (sortBy == "all") sortedItems = items;
+  if (sortBy == "packed") sortedItems = items.filter((item) => item.packed);
+  if (sortBy == "non") sortedItems = items.filter((item) => !item.packed);
 
   function handleAdd(item) {
     setItems((items) => [...items, item]);
@@ -32,12 +38,13 @@ export default function App() {
     <>
       <div className="flex flex-col h-screen">
         <Header />
-        <Form handleAdd={handleAdd} />
+        <Form handleAdd={handleAdd} setSortBy={setSortBy} sortBy={sortBy} />
         <PackingList
           handleChecked={handleChecked}
           items={items}
           deleteItem={deleteItem}
           setItems={setItems}
+          sortedItems={sortedItems}
         />
         <Stats items={items} />
       </div>
