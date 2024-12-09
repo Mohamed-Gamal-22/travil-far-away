@@ -9,13 +9,36 @@ export default function App() {
   function handleAdd(item) {
     setItems((items) => [...items, item]);
   }
+  function deleteItem(deletedItem) {
+    let old = [...items];
+    let newItems = old.filter((item) => item.id != deletedItem.id);
+    setItems(newItems);
+  }
+  function handleChecked(id) {
+    let old = [...items];
+    let newItems = [];
+    for (const item of old) {
+      if (item.id == id) {
+        item.packed = !item.packed;
+        newItems.push(item);
+      } else {
+        newItems.push(item);
+      }
+    }
+    setItems(newItems);
+  }
 
   return (
     <>
       <div className="flex flex-col h-screen">
         <Header />
         <Form handleAdd={handleAdd} />
-        <PackingList items={items} />
+        <PackingList
+          handleChecked={handleChecked}
+          items={items}
+          deleteItem={deleteItem}
+          setItems={setItems}
+        />
         <Stats />
       </div>
     </>
