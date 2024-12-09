@@ -39,7 +39,7 @@ export default function App() {
           deleteItem={deleteItem}
           setItems={setItems}
         />
-        <Stats />
+        <Stats items={items} />
       </div>
     </>
   );

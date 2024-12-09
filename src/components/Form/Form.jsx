@@ -5,6 +5,8 @@ export default function Form({ handleAdd }) {
   const [desc, setdesc] = useState("");
   const [quantity, setquantity] = useState(1);
 
+
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!desc) {
