@@ -5,10 +5,8 @@ export default function PackingList({
   deleteItem,
   setItems,
   handleChecked,
-  sortedItems
+  sortedItems,
 }) {
-
-
   return (
     <div className="text-center bg-[#ECFFF8] p-3 text-[#963D5A] grow flex justify-between flex-col">
       <div className="container mx-auto w-[80%]">
@@ -30,7 +28,6 @@ export default function PackingList({
           )}
         </ul>
       </div>
-
     </div>
   );
 }

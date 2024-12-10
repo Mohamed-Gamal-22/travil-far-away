@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Form({ handleAdd, setSortBy, sortBy, clear }) {
   // to make controlled element like input => 3 steps => state, value, onChange
@@ -8,7 +9,11 @@ export default function Form({ handleAdd, setSortBy, sortBy, clear }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!desc) {
-      alert("no description yet to add !");
+      Swal.fire({
+        icon: "question",
+        title: "Oops...",
+        text: "no description yet to add !",
+      });
     } else {
       const Item = { desc, quantity, packed: false, id: Date.now() };
       console.log(Item);
