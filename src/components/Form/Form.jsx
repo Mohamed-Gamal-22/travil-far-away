@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Form({ handleAdd, setSortBy, sortBy }) {
+export default function Form({ handleAdd, setSortBy, sortBy, clear }) {
   // to make controlled element like input => 3 steps => state, value, onChange
   const [desc, setdesc] = useState("");
   const [quantity, setquantity] = useState(1);
@@ -23,14 +23,14 @@ export default function Form({ handleAdd, setSortBy, sortBy }) {
     <>
       <form
         onSubmit={handleSubmit}
-        className={`text-center py-3 flex justify-center items-center  gap-3 text-[#E3DAFF] font-semibold text-[16px] bg-[#963D5A]`}
+        className={`text-center py-3 flex justify-center items-center  gap-3 text-[#E3DAFF] font-semibold text-[16px] bg-[#963D5A] flex-wrap`}
       >
         <span>what do you need for your trip ?</span>
         <select
           name="nums"
           value={quantity}
           onChange={(e) => setquantity(+e.target.value)}
-          className="text-[#4C191B] rounded-md px-3 py-1"
+          className="text-[#4C191B] rounded-md px-3 p-1"
         >
           {/* section 6 episode 72 */}
           {Array.from({ length: 15 }, (_, i) => i + 1).map((num) => (
@@ -46,20 +46,27 @@ export default function Form({ handleAdd, setSortBy, sortBy }) {
           value={desc}
           onChange={(e) => setdesc(e.target.value)}
         />
-        <button className="bg-[#E3DAFF] rounded-md transition-all duration-300 hover:bg-[#4C191B] hover:text-[#E3DAFF] text-[#4C191B] px-8 py-1">
+        <button className="bg-[#E3DAFF] rounded-md transition-all duration-300 hover:bg-[#4C191B] hover:text-[#E3DAFF] text-[#4C191B] px-8 p-1">
           Add
         </button>
         <div className="flex justify-center gap-2">
           <select
             onChange={(e) => setSortBy(e.target.value)}
             value={sortBy}
-            className="bg-slate-800 text-slate-200 p-2 rounded-md"
+            className="bg-slate-800 text-slate-200 p-[6px] rounded-md"
           >
             <option value="all">Show All Items</option>
             <option value="packed">Show Packed Items</option>
             <option value="non">Show Non-Packed items</option>
           </select>
         </div>
+        <button
+          onClick={clear}
+          type="button"
+          className="text-rose-800 bg-slate-200 p-1 transition-all duration-300 px-4 rounded-md hover:text-slate-300 hover:bg-slate-800"
+        >
+          Clear All
+        </button>
       </form>
     </>
   );

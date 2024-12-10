@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
 import PackingList from "./components/PackingList/PackingList";
 import Stats from "./components/Stats/Stats";
+
 export default function App() {
   const [items, setItems] = useState([]);
   const [sortBy, setSortBy] = useState("all");
@@ -33,12 +34,22 @@ export default function App() {
     }
     setItems(newItems);
   }
+  function clear() {
+    if (!items.length) return;
+    let result = confirm("Are you sure you want to delete all items ?");
+    result ? setItems([]) : "";
+  }
 
   return (
     <>
       <div className="flex flex-col h-screen">
         <Header />
-        <Form handleAdd={handleAdd} setSortBy={setSortBy} sortBy={sortBy} />
+        <Form
+          clear={clear}
+          handleAdd={handleAdd}
+          setSortBy={setSortBy}
+          sortBy={sortBy}
+        />
         <PackingList
           handleChecked={handleChecked}
           items={items}
