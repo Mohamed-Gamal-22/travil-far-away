@@ -31,6 +31,7 @@ export default function App() {
   }
   function handleChecked(id) {
     let old = [...items];
+    
     let newItems = [];
     for (const item of old) {
       if (item.id == id) {
@@ -40,6 +41,7 @@ export default function App() {
         newItems.push(item);
       }
     }
+    localStorage.setItem("items" , JSON.stringify(newItems));
     setItems(newItems);
   }
   function clear() {

@@ -7,6 +7,7 @@ export default function List({ item, deleteItem, handleChecked }) {
     <>
       <li className="flex items-center justify-start border-2 p-1 border-solid border-opacity-45 border-rose-500 rounded-md">
         <input
+        checked={item.packed}
           value={item.packed}
           onChange={() => handleChecked(item.id)}
           type="checkbox"
