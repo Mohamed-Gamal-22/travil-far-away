@@ -6,7 +6,11 @@ import Stats from "./components/Stats/Stats";
 import Swal from "sweetalert2";
 
 export default function App() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(
+    localStorage.getItem("items")
+      ? JSON.parse(localStorage.getItem("items"))
+      : []
+  );
   const [sortBy, setSortBy] = useState("all");
   let sortedItems;
 
@@ -15,12 +19,15 @@ export default function App() {
   if (sortBy == "non") sortedItems = items.filter((item) => !item.packed);
 
   function handleAdd(item) {
-    setItems((items) => [...items, item]);
+    let newItems = [...items, item];
+    setItems(newItems);
+    localStorage.setItem("items", JSON.stringify(newItems));
   }
   function deleteItem(deletedItem) {
     let old = [...items];
     let newItems = old.filter((item) => item.id != deletedItem.id);
     setItems(newItems);
+    localStorage.setItem("items", JSON.stringify(newItems));
   }
   function handleChecked(id) {
     let old = [...items];
@@ -77,7 +84,6 @@ export default function App() {
         />
         <PackingList
           handleChecked={handleChecked}
-          items={items}
           deleteItem={deleteItem}
           setItems={setItems}
           sortedItems={sortedItems}
